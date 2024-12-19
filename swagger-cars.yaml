@@ -1,0 +1,137 @@
+openapi: 3.0.3
+info:
+  title: Luxury Sports Cars API
+  description: API for managing and retrieving information about luxury sports cars.
+  version: 1.0.0
+servers:
+  - url: https://api.luxurysportscars.com/v1
+    description: Production Server
+  - url: https://staging.api.luxurysportscars.com/v1
+    description: Staging Server
+paths:
+  /cars:
+    get:
+      summary: Get a list of all sports cars
+      operationId: getCars
+      responses:
+        '200':
+          description: List of sports cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+    post:
+      summary: Add a new sports car
+      operationId: addCar
+      requestBody:
+        description: Car details to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '201':
+          description: Car successfully added
+  /cars/{id}:
+    get:
+      summary: Get details of a specific car
+      operationId: getCarById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the car to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Car details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        '404':
+          description: Car not found
+    put:
+      summary: Update details of a specific car
+      operationId: updateCar
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the car to update
+          schema:
+            type: string
+      requestBody:
+        description: Updated car details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '200':
+          description: Car successfully updated
+        '404':
+          description: Car not found
+    delete:
+      summary: Delete a specific car
+      operationId: deleteCar
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the car to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Car successfully deleted
+        '404':
+          description: Car not found
+components:
+  schemas:
+    Car:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the car
+          example: car123
+        brand:
+          type: string
+          description: Brand of the car
+          example: Ferrari
+        model:
+          type: string
+          description: Model of the car
+          example: F8 Tributo
+        year:
+          type: integer
+          description: Manufacturing year
+          example: 2023
+        price:
+          type: number
+          format: float
+          description: Price of the car in USD
+          example: 300000.00
+        engine:
+          type: string
+          description: Type of engine
+          example: V8 Twin Turbo
+        horsepower:
+          type: integer
+          description: Horsepower of the car
+          example: 710
+        top_speed:
+          type: number
+          format: float
+          description: Top speed in mph
+          example: 211.0
+        description:
+          type: string
+          description: Brief description of the car
+          example: "A high-performance sports car with luxurious features."
