@@ -6,7 +6,7 @@ window.onload = function() {
     urls: [
         {url: "swagger.yaml", name: "Meters"},
         {url: "swagger-cars.yaml", name: "Cars"}
-        ]
+        ],
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
