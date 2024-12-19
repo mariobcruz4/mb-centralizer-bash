@@ -1,24 +1,24 @@
-name: Centralizer
-
-on:
-  push:
-    paths:
-      - '**/*'
-
-jobs:
-  run-script:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run Script
-        run: |
-          echo "Adding REST config to create Swagger"
-
-#      - name: Upload to SwaggerHub
+#name: Centralizer
+#
+#on:
+#  push:
+#    paths:
+#      - '**/*'
+#
+#jobs:
+#  run-script:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Run Script
 #        run: |
-#          curl -X POST "https://api.swaggerhub.com/apis/BAUTISTACMARIO/learning-swaggerv2?version=1.0.1" \
-#          -H "Authorization: ${{ secrets.SWAGGERHUB_API_KEY }}" \
-#          -H "Content-Type: application/json" \
-#          --data-binary @swagger.json
+#          echo "Adding REST config to create Swagger"
+#
+##      - name: Upload to SwaggerHub
+##        run: |
+##          curl -X POST "https://api.swaggerhub.com/apis/BAUTISTACMARIO/learning-swaggerv2?version=1.0.1" \
+##          -H "Authorization: ${{ secrets.SWAGGERHUB_API_KEY }}" \
+##          -H "Content-Type: application/json" \
+##          --data-binary @swagger.json
