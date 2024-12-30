@@ -6,7 +6,7 @@ window.onload = function() {
     urls: [
         {url: "./swagger-specs/swagger.yaml", name: "Meters"},
         {url: "./swagger-specs/swagger-cars.json", name: "Cars"},
-        {url: "./swagger-specs/music/dualipa-songs.json", name: "Cars"}
+        {url: "./swagger-specs/music/dualipa-songs.json", name: "Dua Lipa"}
         ],
     dom_id: '#swagger-ui',
     deepLinking: true,
