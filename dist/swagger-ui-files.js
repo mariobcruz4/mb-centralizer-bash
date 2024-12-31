@@ -1,6 +1,6 @@
 window.swaggerUrls = [
-    {"url":"./swagger-specs/swagger-s3.json", "name":"Cars"},
-    {"url":"./swagger-specs/swagger.json", "name":"Pets"},
-    {"url":"./swagger-specs/awsservices-swagger-s3.yml", "name":"AWS Services"},
-    {"url":"./swagger-specs/exatlon/exatlonicos.json", "name":"Exatlon Mexico"}
-];
+ {url: "./swagger-specs/swagger.yaml", name: "Meters"},
+ {url: "./swagger-specs/swagger-cars.json", name: "Cars"},
+ {url: "./swagger-specs/music/dualipa-songs.json", name: "Dua Lipa"},
+ {url: "./swagger-specs/music/coldplay.json", name: "Coldplay"}
+],
