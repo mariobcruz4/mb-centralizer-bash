@@ -1,0 +1,200 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Music API",
+    "description": "API for managing songs, artists, and playlists."
+  },
+  "host": "api.musiclibrary.com",
+  "basePath": "/v1",
+  "schemes": ["https"],
+  "paths": {
+    "/songs": {
+      "get": {
+        "summary": "List all songs",
+        "description": "Retrieve a list of all songs in the library.",
+        "responses": {
+          "200": {
+            "description": "List of songs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Song"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new song",
+        "description": "Create a new song entry in the library.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Song"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Song created successfully"
+          }
+        }
+      }
+    },
+    "/songs/{id}": {
+      "get": {
+        "summary": "Get song details",
+        "description": "Retrieve details of a specific song by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the song"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Song details",
+            "schema": {
+              "$ref": "#/definitions/Song"
+            }
+          },
+          "404": {
+            "description": "Song not found"
+          }
+        }
+      }
+    },
+    "/artists": {
+      "get": {
+        "summary": "List all artists",
+        "description": "Retrieve a list of all artists in the library.",
+        "responses": {
+          "200": {
+            "description": "List of artists",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Artist"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/playlists": {
+      "get": {
+        "summary": "List all playlists",
+        "description": "Retrieve a list of all playlists created.",
+        "responses": {
+          "200": {
+            "description": "List of playlists",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Playlist"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new playlist",
+        "description": "Add a new playlist to the library.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Playlist"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Playlist created successfully"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Song": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "song-001"
+        },
+        "title": {
+          "type": "string",
+          "example": "Bohemian Rhapsody"
+        },
+        "artistId": {
+          "type": "string",
+          "example": "artist-001"
+        },
+        "album": {
+          "type": "string",
+          "example": "A Night at the Opera"
+        },
+        "releaseDate": {
+          "type": "string",
+          "format": "date",
+          "example": "1975-10-31"
+        },
+        "genre": {
+          "type": "string",
+          "example": "Rock"
+        }
+      }
+    },
+    "Artist": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "artist-001"
+        },
+        "name": {
+          "type": "string",
+          "example": "Queen"
+        },
+        "genre": {
+          "type": "string",
+          "example": "Rock"
+        }
+      }
+    },
+    "Playlist": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "playlist-001"
+        },
+        "name": {
+          "type": "string",
+          "example": "My Favorite Songs"
+        },
+        "description": {
+          "type": "string",
+          "example": "A collection of my all-time favorite tracks."
+        },
+        "songs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Song"
+          }
+        }
+      }
+    }
+  }
+}
