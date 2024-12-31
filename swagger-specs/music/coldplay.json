@@ -1,0 +1,150 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Coldplay Songs API",
+    "description": "API for retrieving information about Coldplay's songs and albums."
+  },
+  "host": "api.coldplaysongs.com",
+  "basePath": "/v1",
+  "schemes": ["https"],
+  "paths": {
+    "/songs": {
+      "get": {
+        "summary": "List all songs",
+        "description": "Retrieve a list of all songs by Coldplay.",
+        "responses": {
+          "200": {
+            "description": "List of songs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Song"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/songs/{id}": {
+      "get": {
+        "summary": "Get song details",
+        "description": "Retrieve details about a specific song by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the song"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Song details",
+            "schema": {
+              "$ref": "#/definitions/Song"
+            }
+          },
+          "404": {
+            "description": "Song not found"
+          }
+        }
+      }
+    },
+    "/albums": {
+      "get": {
+        "summary": "List all albums",
+        "description": "Retrieve a list of all albums by Coldplay.",
+        "responses": {
+          "200": {
+            "description": "List of albums",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Album"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/albums/{id}/songs": {
+      "get": {
+        "summary": "Get songs from an album",
+        "description": "Retrieve a list of songs from a specific album by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the album"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of songs in the album",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Song"
+              }
+            }
+          },
+          "404": {
+            "description": "Album not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Song": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "song-789"
+        },
+        "title": {
+          "type": "string",
+          "example": "Yellow"
+        },
+        "album": {
+          "type": "string",
+          "example": "Parachutes"
+        },
+        "duration": {
+          "type": "string",
+          "example": "4:29"
+        },
+        "releaseDate": {
+          "type": "string",
+          "example": "2000-06-26"
+        }
+      }
+    },
+    "Album": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "album-101"
+        },
+        "title": {
+          "type": "string",
+          "example": "Parachutes"
+        },
+        "releaseDate": {
+          "type": "string",
+          "example": "2000-07-10"
+        },
+        "songsCount": {
+          "type": "integer",
+          "example": 10
+        }
+      }
+    }
+  }
+}
