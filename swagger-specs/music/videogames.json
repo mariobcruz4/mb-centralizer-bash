@@ -1,0 +1,167 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Video Games API",
+    "description": "API for managing video games, genres, and platforms."
+  },
+  "host": "api.videogamesdb.com",
+  "basePath": "/v1",
+  "schemes": ["https"],
+  "paths": {
+    "/games": {
+      "get": {
+        "summary": "List all video games",
+        "description": "Retrieve a list of all video games in the database.",
+        "responses": {
+          "200": {
+            "description": "List of video games",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new video game",
+        "description": "Create a new video game entry in the database.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Video game created successfully"
+          }
+        }
+      }
+    },
+    "/games/{id}": {
+      "get": {
+        "summary": "Get video game details",
+        "description": "Retrieve details of a specific video game by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the video game"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Video game details",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          },
+          "404": {
+            "description": "Video game not found"
+          }
+        }
+      }
+    },
+    "/genres": {
+      "get": {
+        "summary": "List all genres",
+        "description": "Retrieve a list of all video game genres.",
+        "responses": {
+          "200": {
+            "description": "List of genres",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Genre"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/platforms": {
+      "get": {
+        "summary": "List all platforms",
+        "description": "Retrieve a list of all video game platforms.",
+        "responses": {
+          "200": {
+            "description": "List of platforms",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Platform"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Game": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "game-001"
+        },
+        "title": {
+          "type": "string",
+          "example": "The Legend of Zelda"
+        },
+        "genreId": {
+          "type": "string",
+          "example": "genre-001"
+        },
+        "platformId": {
+          "type": "string",
+          "example": "platform-001"
+        },
+        "releaseDate": {
+          "type": "string",
+          "format": "date",
+          "example": "1986-02-21"
+        },
+        "description": {
+          "type": "string",
+          "example": "An action-adventure game series created by Nintendo."
+        }
+      }
+    },
+    "Genre": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "genre-001"
+        },
+        "name": {
+          "type": "string",
+          "example": "Action-Adventure"
+        }
+      }
+    },
+    "Platform": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "platform-001"
+        },
+        "name": {
+          "type": "string",
+          "example": "Nintendo Switch"
+        }
+      }
+    }
+  }
+}
