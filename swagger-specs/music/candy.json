@@ -1,0 +1,191 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Candy Store API",
+    "description": "API for managing candies, categories, and orders in a candy store."
+  },
+  "host": "api.candystore.com",
+  "basePath": "/v1",
+  "schemes": ["https"],
+  "paths": {
+    "/candies": {
+      "get": {
+        "summary": "List all candies",
+        "description": "Retrieve a list of all candies available in the store.",
+        "responses": {
+          "200": {
+            "description": "List of candies",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Candy"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new candy",
+        "description": "Create a new candy entry in the database.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Candy"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Candy created successfully"
+          }
+        }
+      }
+    },
+    "/candies/{id}": {
+      "get": {
+        "summary": "Get candy details",
+        "description": "Retrieve details of a specific candy by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the candy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Candy details",
+            "schema": {
+              "$ref": "#/definitions/Candy"
+            }
+          },
+          "404": {
+            "description": "Candy not found"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "List all categories",
+        "description": "Retrieve a list of all candy categories.",
+        "responses": {
+          "200": {
+            "description": "List of categories",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "summary": "Create a new order",
+        "description": "Place a new order for candies.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Order created successfully"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Candy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "candy-001"
+        },
+        "name": {
+          "type": "string",
+          "example": "Chocolate Bar"
+        },
+        "categoryId": {
+          "type": "string",
+          "example": "category-001"
+        },
+        "price": {
+          "type": "number",
+          "format": "float",
+          "example": 1.99
+        },
+        "description": {
+          "type": "string",
+          "example": "A rich and creamy milk chocolate bar."
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "category-001"
+        },
+        "name": {
+          "type": "string",
+          "example": "Chocolate"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "order-001"
+        },
+        "customerId": {
+          "type": "string",
+          "example": "customer-123"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderItem"
+          }
+        },
+        "totalPrice": {
+          "type": "number",
+          "format": "float",
+          "example": 15.99
+        }
+      }
+    },
+    "OrderItem": {
+      "type": "object",
+      "properties": {
+        "candyId": {
+          "type": "string",
+          "example": "candy-001"
+        },
+        "quantity": {
+          "type": "integer",
+          "example": 2
+        }
+      }
+    }
+  }
+}
